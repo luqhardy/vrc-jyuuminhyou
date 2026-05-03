@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* Apple Pay Checkmark Animation */
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Smooth fade-in for the profile card */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Element Fade Animations */
+@keyframes elementFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-element-fade-in {
+  animation: elementFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes elementFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.animate-element-fade-out {
+  animation: elementFadeOut 0.3s ease-out forwards;
+}
+
+/* Card Swipe Down Animation */
+@keyframes cardSlideDown {
+  from {
+    transform: translate3d(0, -100vh, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-card-slide-down {
+  /* Apple-like fluid spring curve with slightly longer duration for luxurious settling */
+  animation: cardSlideDown 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Subtle Card Pulse While Processing */
+@keyframes cardHoldPulse {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, 0, 0) scale(0.985); }
+}
+
+.animate-card-hold-pulse {
+  animation: cardHoldPulse 2.5s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+/* Holographic Shimmer Sweep */
+@keyframes cardShimmer {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-card-shimmer {
+  animation: cardShimmer 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Floating Particles */
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  50% { transform: translate(10px, -15px) scale(1.5); opacity: 1; }
+}
+
+@keyframes particleFloatReverse {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(-12px, -10px) scale(1.8); opacity: 1; }
+}
+
+.animate-particle-float {
+  animation: particleFloat 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-float-reverse {
+  animation: particleFloatReverse 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* NameDrop/AirDrop Style Particles */
+@keyframes namedropParticle {
+  0% { transform: translate(0, 0) scale(0); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
+
+.animate-namedrop-particle {
+  animation: namedropParticle ease-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes blobPulse {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+}
+
+.animate-blob-pulse {
+  animation: blobPulse 3s ease-in-out infinite;
+}
