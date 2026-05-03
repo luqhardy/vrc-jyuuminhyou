@@ -257,7 +257,7 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mt-auto pt-6 w-full text-center text-[10px] text-neutral-600 relative z-10 h-50 animate-fade-in-up">
+      <div className="mt-auto pt-6 w-full text-center text-[10px] text-neutral-600 relative z-10 h-40 animate-fade-in-up">
         <p>
           © 2026 特定非営利活動法人 在日マレーシア人ふにゃおすなでなで推進委員会
           <br />
