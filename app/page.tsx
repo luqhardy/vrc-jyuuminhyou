@@ -5,6 +5,8 @@ import XIcon from "@mui/icons-material/X";
 import LanguageIcon from "@mui/icons-material/Language";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { WebHaptics, defaultPatterns } from "web-haptics";
+import { animate, createScope, spring, createDraggable } from 'animejs';
+import { scrambleText } from 'animejs/text';
 
 type ValidLanguage = "en" | "ja" | "ms";
 type AnimationStage =
@@ -16,12 +18,37 @@ type AnimationStage =
   | "language"
   | "profile";
 
+
 export default function Home() {
+  const rawAscii = `
+=l=l=､
+　　　　　　　　　　　　　　　　　　　　　 　 　 　 　 |＼.　-─-　.／|
+　　　／￣￣￣￣￣￣￣￣￣＼ 　 　 　 　 　 　 |／　　　　　 ＼|　　　　　 ／￣￣￣￣￣￣￣￣￣＼
+　　　| ふんにゃおすの増加を ＞　　　　　　　 /　　´　 　 ｀ヽ　i　　　　＜ ふんにゃおすの増加を |
+　　　| 対処すべき！　　　 　|　　 　 　 ﾆﾊﾟ─|　"　　l￣l　　" |─！　　| 対処すべき！　　　 　|
+　　　＼＿＿＿＿＿＿＿＿＿／　 　 　 　 　 　 ＼＿　ゝ '　＿ノ　　　　　 ＼＿＿＿＿＿＿＿＿＿／
+　　　　　　　　　　　　　　　　　　　　　　　　　　／:::::::::|/: :V::::::＼
+　　　　　　　　　　　　　　　　 　 　 　 　 　 　 /:::::::/:::::|〉: 〈|:::::::::::::､
+　　　　　　　　　　　　　 　 　 　 　 　 　 　 　 |::::::::|:::::::|: : : |::::::::|:::::|
+　　　　　　　　　　　　　　　　　　 　 |二二二二二二二二二二二二二二二|
+　　　　　　　　　　　　　　　　　　 　 |　　　　　　　　　　　　　　　　　 　 　 　 |
+　　　　　　　　　 　 　 　 　 　 　 　 :|　　　　　　　　　　　　　　　　　 　 　 　 |:
+　　　　　　　 　 　 　 　 　 　 　 　 .::|　　　　　　　　　　　　　　　　　 　 　 　 |::.
+　　　　　　　　　　　　 　 　 　 　 .:.:.:|　　　　　　　　　　　　　　　　　 　 　 　 |:.:.:.
+　　　　　　　　　　　　　　　 　 .:.:.:.:.::|　　　　　　　　　　　　　　　　　 　 　 　 |:.:.:.:.:..
+　　　　　　　　　 　 　 　 　 ..:.:.:.:.:.:.:.:|＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|:.:.:.:.:.:.:.:.:...
+　　　　　　　　　|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|
+
+
+`;
+const name = `Hardy. @luqhardy`;
   const [stage, setStage] = useState<AnimationStage>("initial");
-  const [language, setLanguage] = useState<ValidLanguage | null>(null);
+  const language: ValidLanguage = "en";
+  const [particles, setParticles] = useState<any[]>([]);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hapticsRef = useRef<any>(null);
+  const nameRef = useRef<HTMLParagraphElement>(null);
 
   const profileData: Record<
     ValidLanguage,
@@ -29,7 +56,7 @@ export default function Home() {
   > = {
     en: {
       greeting: "Scan Complete",
-      name: "Hardy (luqhardy)",
+      name: rawAscii,
       intro:
         "Resident of 'Nadenade Matching' since Spring 2026. Trust Level: USER. Self-proclaimed Japanese speaker.",
     },
@@ -39,12 +66,6 @@ export default function Home() {
       intro:
         "現住所：なでなでマッチング。2026年春から住民。信頼レベル：USER。自称日本語話者。",
     },
-    ms: {
-      greeting: "Imbasan Selesai",
-      name: "Hardy (luqhardy)",
-      intro:
-        "Penduduk 'Nadenade Matching' sejak Musim Bunga 2026. Tahap Kepercayaan: USER. Mengaku pandai berbahasa Jepun.",
-    },
   };
 
   useEffect(() => {
@@ -52,6 +73,19 @@ export default function Home() {
       hapticsRef.current = new WebHaptics();
     }
 
+    setParticles(
+      Array.from({ length: 150 }).map((_, i) => ({
+        id: i,
+        size: Math.random() * 2.5 + 1,
+        tx: (Math.random() - 0.5) * 600,
+        ty: (Math.random() - 0.5) * 600,
+        delay: Math.random() * 3,
+        duration: 1.5 + Math.random() * 2.5,
+        isBlue: i % 4 === 0,
+      }))
+    );
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStage("entering");
 
     const enterTimer = setTimeout(() => {
@@ -63,12 +97,22 @@ export default function Home() {
         if (hapticsRef.current) {
           hapticsRef.current.trigger(defaultPatterns.success);
         }
+        if (audioRef.current) {
+          audioRef.current.currentTime = 0;
+          audioRef.current
+            .play()
+            .catch((e: Error) => console.log("Audio playback blocked:", e));
+        }
+
+        if (hapticsRef.current) {
+          hapticsRef.current.trigger();
+        }
 
         setTimeout(() => {
           setStage("fadeout");
 
           setTimeout(() => {
-            setStage("language");
+            setStage("profile");
           }, 500);
         }, 2000);
       }, 1000);
@@ -77,23 +121,36 @@ export default function Home() {
     return () => clearTimeout(enterTimer);
   }, []);
 
-  const handleLanguageSelect = (lang: ValidLanguage) => {
-    if (audioRef.current) {
-      audioRef.current
-        .play()
-        .catch((e: Error) => console.log("Audio playback blocked:", e));
+  useEffect(() => {
+    if (stage === "profile" && language && nameRef.current) {
+      animate(nameRef.current, {
+        innerHTML: scrambleText({
+          text: profileData[language].name,
+          from: 'auto',
+          reversed: false,
+          ease: 'linear',
+          chars: '',
+          cursor: '░▒▓█',
+          override: false,
+          perturbation: 0.00,
+          duration: 500,
+          delay: 0,
+          revealDelay: 0,
+          revealRate: 50,
+          settleDuration: 500,
+          settleRate: 30,
+        }),
+      });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, language]);
 
-    if (hapticsRef.current) {
-      hapticsRef.current.trigger();
-    }
-
-    setLanguage(lang);
-    setStage("profile");
-  };
-
-  return (
-    <main className="min-h-screen bg-[#f2f2f7] text-black flex flex-col items-center p-6 font-sans overflow-hidden">
+return (
+    <main 
+      className={`min-h-screen flex flex-col items-center p-6 font-sans overflow-hidden transition-colors duration-500 ${
+        stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
+      }`}
+    >
       <audio ref={audioRef} src="/ding.mp3" preload="auto" />
 
       {(stage === "entering" ||
@@ -104,7 +161,6 @@ export default function Home() {
           className={`fixed inset-0 flex flex-col items-center justify-start ${stage === "fadeout" ? "animate-element-fade-out" : "animate-element-fade-in"}`}
         >
           {/* Card Image Container */}
-{/* Card Image Container */}
           <div
             className={`relative mt-12 px-6 w-full flex justify-center ${stage === "entering" ? "animate-card-slide-down" : ""} ${stage === "processing" ? "animate-card-hold-pulse" : ""}`}
           >
@@ -116,23 +172,20 @@ export default function Home() {
                 <div className="absolute w-[200px] h-[200px] bg-white rounded-full blur-[60px] opacity-30 animate-pulse" style={{ animationDelay: '0.5s'}} />
                 
                 {/* Sprawling background particles (NameDrop style) */}
-                {Array.from({ length: 150 }).map((_, i) => {
-                  const size = Math.random() * 2.5 + 1;
-                  return (
-                    <div
-                      key={i}
-                      className={`absolute rounded-full animate-namedrop-particle ${i % 4 === 0 ? 'bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]' : 'bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]'}`}
-                      style={{
-                        width: `${size}px`,
-                        height: `${size}px`,
-                        '--tx': `${(Math.random() - 0.5) * 600}px`,
-                        '--ty': `${(Math.random() - 0.5) * 600}px`,
-                        animationDelay: `${Math.random() * 3}s`,
-                        animationDuration: `${1.5 + Math.random() * 2.5}s`,
-                      } as React.CSSProperties}
-                    />
-                  );
-                })}
+                {particles.map((p) => (
+                  <div
+                    key={p.id}
+                    className={`absolute rounded-full animate-namedrop-particle ${p.isBlue ? 'bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]' : 'bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]'}`}
+                    style={{
+                      width: `${p.size}px`,
+                      height: `${p.size}px`,
+                      '--tx': `${p.tx}px`,
+                      '--ty': `${p.ty}px`,
+                      animationDelay: `${p.delay}s`,
+                      animationDuration: `${p.duration}s`,
+                    } as React.CSSProperties}
+                  />
+                ))}
               </div>
             )}
 
@@ -179,85 +232,20 @@ export default function Home() {
         </div>
       )}
 
-      {stage === "language" && (
-        <div className="flex-1 flex flex-col items-center justify-center space-y-4 animate-fade-in-up">
-          <h2 className="text-xl font-semibold mb-6 text-black">
-            Select Language / 言語を選択
-          </h2>
-          <div className="flex flex-col space-y-3 w-full max-w-sm px-10">
-            <button
-              onClick={() => handleLanguageSelect("en")}
-              className="px-6 py-3.5 bg-black text-white rounded-full font-medium hover:bg-neutral-800 transition shadow-md active:scale-95"
-            >
-              English
-            </button>
-            <button
-              onClick={() => handleLanguageSelect("ja")}
-              className="px-6 py-3.5 bg-black text-white rounded-full font-medium hover:bg-neutral-800 transition shadow-md active:scale-95"
-            >
-              日本語
-            </button>
-            <button
-              onClick={() => handleLanguageSelect("ms")}
-              className="px-6 py-3.5 bg-black text-white rounded-full font-medium hover:bg-neutral-800 transition shadow-md active:scale-95"
-            >
-              Melayu
-            </button>
-          </div>
-        </div>
-      )}
-
       {stage === "profile" && language && (
-        <div className="flex-1 flex flex-col items-center justify-center max-w-sm w-full animate-fade-in-up">
-          <div className="bg-white/90 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 w-full text-center border border-black/5 mt-8">
-            <div className="w-24 h-24 bg-blue-50 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-sm">
-              <img
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hardy"
-                alt="Hardy Avatar"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <h1 className="text-2xl font-bold text-black mb-1">
-              {profileData[language].name}
-            </h1>
-            <p className="text-sm font-semibold text-[#007aff] mb-4 tracking-widest uppercase">
-              {profileData[language].greeting}
-            </p>
-
-            <p className="text-neutral-500 mb-8 leading-relaxed">
-              {profileData[language].intro}
-            </p>
-
-            <div className="flex justify-center space-x-6 text-neutral-400">
-              <a
-                href="https://x.com/luqhardy"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-black transition-transform hover:scale-110"
-              >
-                <XIcon fontSize="large" />
-              </a>
-              <a
-                href="https://luqmanhadi.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-black transition-transform hover:scale-110"
-              >
-                <LanguageIcon fontSize="large" />
-              </a>
-              <a
-                href="mailto:hello@luqmanhadi.com"
-                className="hover:text-black transition-transform hover:scale-110"
-              >
-                <AlternateEmailIcon fontSize="large" />
-              </a>
-            </div>
-          </div>
+        <div className="bg-black p-1 items-center justify-center animate-fade-in-up mb-3">
+          <p
+            className="bg-black text-white p-4 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
+            style={{ 
+              fontFamily: '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", sans-serif', 
+              lineHeight: '1.1' 
+            }}
+            ref={nameRef}
+          >M</p>
         </div>
       )}
 
-      <div className="mt-auto pt-6 w-full text-center text-[10px] text-neutral-600 relative z-10 h-40 animate-fade-in-up">
+      <div className={`mt-auto pt-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}>
         <p>
           © 2026 特定非営利活動法人 在日マレーシア人ふにゃおすなでなで推進委員会
           <br />
