@@ -7,6 +7,7 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { WebHaptics, defaultPatterns } from "web-haptics";
 import { animate, createScope, spring, createDraggable } from 'animejs';
 import { scrambleText } from 'animejs/text';
+import Link from 'next/link';
 
 type ValidLanguage = "en" | "ja";
 type AnimationStage =
@@ -23,9 +24,9 @@ export default function Home() {
   const rawAscii = `
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　=l=l=､
 　　　　　　　　　　　　　　　　　　　　　 　 　 　 　 |＼.　-─-　.／|
-　　　／￣￣￣￣￣￣￣￣￣＼ 　 　 　 　 　 　 |／　　　　　 ＼|　　　　　 ／￣￣￣￣￣￣￣￣￣＼
+　　　／￣￣￣￣￣￣￣￣￣＼ 　 　 　　  　 |／　　　　　 ＼|　　　　　 ／￣￣￣￣￣￣￣￣￣＼
 　　　| ふんにゃおすの増加を ＞　　　　　　　 /　　´　 　 ｀ヽ　i　　　　＜ ふんにゃおすの増加を |
-　　　| 対処すべき！　　　 　|　　 　 　 ﾆﾊﾟ─|　"　　l￣l　　" |─！　　| 対処すべき！　　　 　|
+　　　| 対処すべき！　　　 　 |　　 　 　   ﾆﾊﾟ─|　"　　l￣l　　" |─！　　| 対処すべき！　　　 　|
 　　　＼＿＿＿＿＿＿＿＿＿／　 　 　 　 　 　 ＼＿　ゝ '　＿ノ　　　　　 ＼＿＿＿＿＿＿＿＿＿／
 　　　　　　　　　　　　　　　　　　　　　　　　　　／:::::::::|/: :V::::::＼
 　　　　　　　　　　　　　　　　 　 　 　 　 　 　 /:::::::/:::::|〉: 〈|:::::::::::::､
@@ -49,7 +50,9 @@ const name = `Hardy. @luqhardy`;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hapticsRef = useRef<any>(null);
   const nameRef = useRef<HTMLDivElement>(null);
-  const messageRef = 'I am Hardy! ';
+  const messageRef = 'I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. Interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.';
+  const messageRefJa = 'ハーディです！日本のニコニコ動画文化に触発されて、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。';
+//  const websitelink = 
 
   const profileData: Record<
     ValidLanguage,
@@ -244,12 +247,21 @@ return (
             ref={nameRef} 
           ></div>
           {messageRef}
+          <br />
+          {messageRefJa}
+          <br />
+          <p className="text-neutral-400">
+          <a href="https://luqmanhadi.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
+            Visit My Website/個人サイトはこちらから
+          </a>
+          </p>
         </div>
       )}
 
       <div className={`mt-auto pt-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}>
         <p>
           © 2026 特定非営利活動法人 在日マレーシア人ふにゃおすなでなで推進委員会
+          <br />
           <br />
           <span className="opacity-80">
             (Specified Non-Profit Corporation: Malaysians in Japan Funyaosu
