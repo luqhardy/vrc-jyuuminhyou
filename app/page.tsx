@@ -8,7 +8,7 @@ import { WebHaptics, defaultPatterns } from "web-haptics";
 import { animate, createScope, spring, createDraggable } from 'animejs';
 import { scrambleText } from 'animejs/text';
 
-type ValidLanguage = "en" | "ja" | "ms";
+type ValidLanguage = "en" | "ja";
 type AnimationStage =
   | "initial"
   | "entering"
@@ -21,7 +21,7 @@ type AnimationStage =
 
 export default function Home() {
   const rawAscii = `
-=l=l=､
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　=l=l=､
 　　　　　　　　　　　　　　　　　　　　　 　 　 　 　 |＼.　-─-　.／|
 　　　／￣￣￣￣￣￣￣￣￣＼ 　 　 　 　 　 　 |／　　　　　 ＼|　　　　　 ／￣￣￣￣￣￣￣￣￣＼
 　　　| ふんにゃおすの増加を ＞　　　　　　　 /　　´　 　 ｀ヽ　i　　　　＜ ふんにゃおすの増加を |
@@ -48,7 +48,8 @@ const name = `Hardy. @luqhardy`;
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hapticsRef = useRef<any>(null);
-  const nameRef = useRef<HTMLParagraphElement>(null);
+  const nameRef = useRef<HTMLDivElement>(null);
+  const messageRef = 'I am Hardy! ';
 
   const profileData: Record<
     ValidLanguage,
@@ -126,19 +127,19 @@ const name = `Hardy. @luqhardy`;
       animate(nameRef.current, {
         innerHTML: scrambleText({
           text: profileData[language].name,
-          from: 'auto',
+          from: 'center',
           reversed: false,
           ease: 'linear',
-          chars: '',
-          cursor: '░▒▓█',
-          override: false,
+          chars: 'shades',
+          cursor: '█',
+          override: true,
           perturbation: 0.00,
-          duration: 500,
+          duration: 0,
           delay: 0,
           revealDelay: 0,
-          revealRate: 50,
-          settleDuration: 500,
-          settleRate: 30,
+          revealRate: 200,
+          settleDuration: 300,
+          settleRate: 100,
         }),
       });
     }
@@ -234,14 +235,15 @@ return (
 
       {stage === "profile" && language && (
         <div className="bg-black p-1 items-center justify-center animate-fade-in-up mb-3">
-          <p
+          <div
             className="bg-black text-white p-4 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
             style={{ 
-              fontFamily: '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", sans-serif', 
+              fontFamily: '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", "Hardy", sans-serif', 
               lineHeight: '1.1' 
             }}
-            ref={nameRef}
-          >M</p>
+            ref={nameRef} 
+          ></div>
+          {messageRef}
         </div>
       )}
 
