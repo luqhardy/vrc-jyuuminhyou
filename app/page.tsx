@@ -152,7 +152,7 @@ export default function Home() {
 
   return (
     <main
-      className={`min-h-screen flex flex-col items-center p-20 font-sans overflow-hidden transition-colors duration-500 ${
+      className={`min-h-screen flex flex-col items-center p-10 font-sans overflow-hidden transition-colors duration-500 ${
         stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
       }`}
     >
@@ -247,9 +247,9 @@ export default function Home() {
       )}
 
       {stage === "profile" && language && (
-        <div className="bg-black p-1 items-center justify-center animate-fade-in-up mb-3">
+        <div className="bg-black p-10 m-10 ml-10 mr-10 items-center justify-center animate-fade-in-up mb-3">
           <div
-            className="bg-black text-white p-4 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
+            className="bg-black text-white p-10 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
             style={{
               fontFamily:
                 '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", "Hardy", sans-serif',
