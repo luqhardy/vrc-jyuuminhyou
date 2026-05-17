@@ -247,12 +247,11 @@ export default function Home() {
       )}
 
       {stage === "profile" && language && (
-        <div className="bg-black p-10 m-10 ml-10 mr-10 items-center justify-center animate-fade-in-up mb-3">
+        <div className="bg-black p-10 items-center justify-center animate-fade-in-up mb-3 w-full h-full">
           <div
-            className="bg-black text-white p-10 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
+            className="bg-black text-white p-10 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre text-[5px] md:text-sm justify-center items-center"
             style={{
-              fontFamily:
-                '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", "Hardy", sans-serif',
+              fontFamily: '"MS PGothic"',
               lineHeight: "1.1",
             }}
             ref={nameRef}
