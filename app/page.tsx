@@ -8,6 +8,12 @@ import { WebHaptics, defaultPatterns } from "web-haptics";
 import { animate, createScope, spring, createDraggable } from "animejs";
 import { scrambleText } from "animejs/text";
 import Link from "next/link";
+import { Geist_Mono } from "next/font/google";
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 type ValidLanguage = "en" | "ja";
 type AnimationStage =
@@ -21,25 +27,12 @@ type AnimationStage =
 
 export default function Home() {
   const rawAscii = `
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　=l=l=､
-　　　　　　　　　　　　　　　　　　　　　 　 　 　 　 |＼.　-─-　.／|
-　　　／￣￣￣￣￣￣￣￣￣＼ 　 　 　　  　 |／　　　　　 ＼|　　　　　 ／￣￣￣￣￣￣￣￣￣＼
-　　　| ふんにゃおすの増加を ＞　　　　　　　 /　　´　 　 ｀ヽ　i　　　　＜ ふんにゃおすの増加を |
-　　　| 対処すべき！　　　 　 |　　 　 　   ﾆﾊﾟ─|　"　　l￣l　　" |─！　　| 対処すべき！　　　 　|
-　　　＼＿＿＿＿＿＿＿＿＿／　 　 　 　 　 　 ＼＿　ゝ '　＿ノ　　　　　 ＼＿＿＿＿＿＿＿＿＿／
-　　　　　　　　　　　　　　　　　　　　　　　　　　／:::::::::|/: :V::::::＼
-　　　　　　　　　　　　　　　　 　 　 　 　 　 　 /:::::::/:::::|〉: 〈|:::::::::::::､
-　　　　　　　　　　　　　 　 　 　 　 　 　 　 　 |::::::::|:::::::|: : : |::::::::|:::::|
-　　　　　　　　　　　　　　　　　　 　 |二二二二二二二二二二二二二二二|
-　　　　　　　　　　　　　　　　　　 　 |　　　　　　　　　　　　　　　　　 　 　 　 |
-　　　　　　　　　 　 　 　 　 　 　 　 :|　　　　　　　　　　　　　　　　　 　 　 　 |:
-　　　　　　　 　 　 　 　 　 　 　 　 .::|　　　　　　　　　　　　　　　　　 　 　 　 |::.
-　　　　　　　　　　　　 　 　 　 　 .:.:.:|　　　　　　　　　　　　　　　　　 　 　 　 |:.:.:.
-　　　　　　　　　　　　　　　 　 .:.:.:.:.::|　　　　　　　　　　　　　　　　　 　 　 　 |:.:.:.:.:..
-　　　　　　　　　 　 　 　 　 ..:.:.:.:.:.:.:.:|＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|:.:.:.:.:.:.:.:.:...
-　　　　　　　　　|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|
 
-
+    　　 ∩＿∩　　／￣￣￣￣￣
+    　　（　´∀｀）＜　日本語は全てVRChatから学んだ
+    　　（　　　　） 　＼＿＿＿＿＿
+    　　｜ ｜　|
+    　　（_＿）＿）
 `;
   const name = `Hardy. @luqhardy`;
   const [stage, setStage] = useState<AnimationStage>("initial");
@@ -247,15 +240,16 @@ export default function Home() {
       )}
 
       {stage === "profile" && language && (
-        <div className="bg-black p-10 items-center justify-center animate-fade-in-up mb-3 w-full h-full">
+        <div className="bg-black p-10 items-center justify-center animate-fade-in-up mb-3 w-full h-full font-mono">
           <div
-            className="bg-black text-white p-10 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre text-[5px] md:text-sm justify-center items-center"
+            className="bg-black text-white p-2 rounded-lg shadow-lg border border-gray-700 w-full h-full text-[10px] whitespace-pre md:text-sm justify-center items-center font-mono text-sm leading-none tracking-normal"
             style={{
-              fontFamily: '"MS PGothic"',
-              lineHeight: "1.1",
+              fontFamily: '"Geist Mono"',
+              lineHeight: "1.0",
             }}
             ref={nameRef}
           ></div>
+          <br />
           {messageRef}
           <br />
           {messageRefJa}
