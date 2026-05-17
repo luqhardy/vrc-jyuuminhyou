@@ -5,9 +5,9 @@ import XIcon from "@mui/icons-material/X";
 import LanguageIcon from "@mui/icons-material/Language";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { WebHaptics, defaultPatterns } from "web-haptics";
-import { animate, createScope, spring, createDraggable } from 'animejs';
-import { scrambleText } from 'animejs/text';
-import Link from 'next/link';
+import { animate, createScope, spring, createDraggable } from "animejs";
+import { scrambleText } from "animejs/text";
+import Link from "next/link";
 
 type ValidLanguage = "en" | "ja";
 type AnimationStage =
@@ -18,7 +18,6 @@ type AnimationStage =
   | "fadeout"
   | "language"
   | "profile";
-
 
 export default function Home() {
   const rawAscii = `
@@ -42,7 +41,7 @@ export default function Home() {
 
 
 `;
-const name = `Hardy. @luqhardy`;
+  const name = `Hardy. @luqhardy`;
   const [stage, setStage] = useState<AnimationStage>("initial");
   const language: ValidLanguage = "en";
   const [particles, setParticles] = useState<any[]>([]);
@@ -50,9 +49,11 @@ const name = `Hardy. @luqhardy`;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hapticsRef = useRef<any>(null);
   const nameRef = useRef<HTMLDivElement>(null);
-  const messageRef = 'I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. Interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.';
-  const messageRefJa = 'ハーディです！日本のニコニコ動画文化に触発されて、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。';
-//  const websitelink = 
+  const messageRef =
+    "I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. Interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.";
+  const messageRefJa =
+    "ハーディです！日本のニコニコ動画文化に触発されて、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。";
+  //  const websitelink =
 
   const profileData: Record<
     ValidLanguage,
@@ -86,7 +87,7 @@ const name = `Hardy. @luqhardy`;
         delay: Math.random() * 3,
         duration: 1.5 + Math.random() * 2.5,
         isBlue: i % 4 === 0,
-      }))
+      })),
     );
 
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -130,13 +131,13 @@ const name = `Hardy. @luqhardy`;
       animate(nameRef.current, {
         innerHTML: scrambleText({
           text: profileData[language].name,
-          from: 'center',
+          from: "center",
           reversed: false,
-          ease: 'linear',
-          chars: 'shades',
-          cursor: '█',
+          ease: "linear",
+          chars: "shades",
+          cursor: "█",
           override: true,
-          perturbation: 0.00,
+          perturbation: 0.0,
           duration: 0,
           delay: 0,
           revealDelay: 0,
@@ -146,12 +147,12 @@ const name = `Hardy. @luqhardy`;
         }),
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage, language]);
 
-return (
-    <main 
-      className={`min-h-screen flex flex-col items-center p-6 font-sans overflow-hidden transition-colors duration-500 ${
+  return (
+    <main
+      className={`min-h-screen flex flex-col items-center p-20 font-sans overflow-hidden transition-colors duration-500 ${
         stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
       }`}
     >
@@ -169,25 +170,34 @@ return (
             className={`relative mt-12 px-6 w-full flex justify-center ${stage === "entering" ? "animate-card-slide-down" : ""} ${stage === "processing" ? "animate-card-hold-pulse" : ""}`}
           >
             {/* iOS NameDrop-style Aura/Bloom behind the card */}
-            {(stage === "processing" || stage === "entering" || stage === "done") && (
+            {(stage === "processing" ||
+              stage === "entering" ||
+              stage === "done") && (
               <div className="absolute top-0 left-0 w-full h-[120%] -z-10 pointer-events-none flex justify-center items-center">
                 {/* Huge glowing orb */}
-                <div className={`absolute w-[300px] h-[300px] bg-[#007AFF] rounded-full blur-[80px] opacity-20 ${stage === "entering" ? "animate-blob-pulse" : "animate-pulse"}`} />
-                <div className="absolute w-[200px] h-[200px] bg-white rounded-full blur-[60px] opacity-30 animate-pulse" style={{ animationDelay: '0.5s'}} />
-                
+                <div
+                  className={`absolute w-[300px] h-[300px] bg-[#007AFF] rounded-full blur-[80px] opacity-20 ${stage === "entering" ? "animate-blob-pulse" : "animate-pulse"}`}
+                />
+                <div
+                  className="absolute w-[200px] h-[200px] bg-white rounded-full blur-[60px] opacity-30 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+
                 {/* Sprawling background particles (NameDrop style) */}
                 {particles.map((p) => (
                   <div
                     key={p.id}
-                    className={`absolute rounded-full animate-namedrop-particle ${p.isBlue ? 'bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]' : 'bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]'}`}
-                    style={{
-                      width: `${p.size}px`,
-                      height: `${p.size}px`,
-                      '--tx': `${p.tx}px`,
-                      '--ty': `${p.ty}px`,
-                      animationDelay: `${p.delay}s`,
-                      animationDuration: `${p.duration}s`,
-                    } as React.CSSProperties}
+                    className={`absolute rounded-full animate-namedrop-particle ${p.isBlue ? "bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]" : "bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]"}`}
+                    style={
+                      {
+                        width: `${p.size}px`,
+                        height: `${p.size}px`,
+                        "--tx": `${p.tx}px`,
+                        "--ty": `${p.ty}px`,
+                        animationDelay: `${p.delay}s`,
+                        animationDuration: `${p.duration}s`,
+                      } as React.CSSProperties
+                    }
                   />
                 ))}
               </div>
@@ -240,25 +250,33 @@ return (
         <div className="bg-black p-1 items-center justify-center animate-fade-in-up mb-3">
           <div
             className="bg-black text-white p-4 rounded-lg shadow-lg border border-gray-700 w-full h-full whitespace-pre overflow-x-auto text-[12px] md:text-sm"
-            style={{ 
-              fontFamily: '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", "Hardy", sans-serif', 
-              lineHeight: '1.1' 
+            style={{
+              fontFamily:
+                '"MS PGothic", "Mona", "Saitamaar", "IPAMonaPGothic", "Meiryo", "Hardy", sans-serif',
+              lineHeight: "1.1",
             }}
-            ref={nameRef} 
+            ref={nameRef}
           ></div>
           {messageRef}
           <br />
           {messageRefJa}
           <br />
           <p className="text-neutral-400">
-          <a href="https://luqmanhadi.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-            Visit My Website/個人サイトはこちらから
-          </a>
+            <a
+              href="https://luqmanhadi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              Visit My Website/個人サイトはこちらから
+            </a>
           </p>
         </div>
       )}
 
-      <div className={`mt-auto pt-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}>
+      <div
+        className={`mt-auto pt-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}
+      >
         <p>
           © 2026 特定非営利活動法人 在日マレーシア人ふにゃおすなでなで推進委員会
           <br />
