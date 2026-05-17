@@ -45,7 +45,7 @@ export default function Home() {
   const messageRef =
     "Nice to meet you! I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. I　an interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.";
   const messageRefJa =
-    "はじめまして、ハーディです！ニコニコ動画をはじめとして日本のサブカルチャーに魅力され、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。よろしくお願いします！";
+    "はじめまして、ハーディです！ニコニコ動画をはじめとして日本のサブカルチャーに魅力され、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な第2言語習得方法に興味があります。よろしくお願いします！";
   //  const websitelink =
 
   const profileData: Record<
