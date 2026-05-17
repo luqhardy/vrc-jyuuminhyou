@@ -43,9 +43,9 @@ export default function Home() {
   const hapticsRef = useRef<any>(null);
   const nameRef = useRef<HTMLDivElement>(null);
   const messageRef =
-    "I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. Interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.";
+    "Nice to meet you! I am Hardy! Inspired by the Japanese Nico Nico Douga subculture, I decided to study in Japan! Thank you for scanning my VRChat Residence Card. I　an interested in non-standard language acquisition methods by using media such as anime, manga and VRChat.";
   const messageRefJa =
-    "ハーディです！日本のニコニコ動画文化に触発されて、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。";
+    "はじめまして、ハーディです！ニコニコ動画をはじめとして日本のサブカルチャーに魅力され、日本に留学しに来ました！　VRChat住民票をスキャンいただき、誠にありがとうございました。VRC、アニメ、漫画、ゲームなんかで言語を学習する非標準的な方法に興味があります。よろしくお願いします！";
   //  const websitelink =
 
   const profileData: Record<
@@ -249,12 +249,15 @@ export default function Home() {
             }}
             ref={nameRef}
           ></div>
-          <br />
-          {messageRef}
-          <br />
-          {messageRefJa}
-          <br />
-          <p className="text-neutral-400">
+          <div className="text-[10px]">
+            <br />
+            {messageRef}
+            <br />
+            <br />
+            {messageRefJa}
+            <br />
+          </div>
+          <p className="text-neutral-400 text-[10px]">
             <a
               href="https://luqmanhadi.com"
               target="_blank"
