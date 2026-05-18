@@ -28,9 +28,9 @@ type AnimationStage =
 export default function Home() {
   const rawAscii = `
 
-    　　 ∩＿∩　　／￣￣￣￣￣
+    　　 ∩＿∩　　 ／￣￣￣￣￣
     　　（　´∀｀）＜　日本語は全てVRChatから学んだ
-    　　（　　　　） 　＼＿＿＿＿＿
+    　　（　　　　）＼＿＿＿＿＿
     　　｜ ｜　|
     　　（_＿）＿）
 `;
@@ -134,9 +134,9 @@ export default function Home() {
           duration: 0,
           delay: 0,
           revealDelay: 0,
-          revealRate: 200,
-          settleDuration: 300,
-          settleRate: 100,
+          revealRate: 50,
+          settleDuration: 1000,
+          settleRate: 1000,
         }),
       });
     }
@@ -145,8 +145,9 @@ export default function Home() {
 
   return (
     <main
-      className={`min-h-screen flex flex-col items-center p-10 font-sans overflow-hidden transition-colors duration-500 ${stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
-        }`}
+      className={`min-h-screen flex flex-col items-center p-10 font-sans overflow-hidden transition-colors duration-500 ${
+        stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
+      }`}
     >
       <audio ref={audioRef} src="/ding.mp3" preload="auto" />
 
@@ -154,89 +155,89 @@ export default function Home() {
         stage === "processing" ||
         stage === "done" ||
         stage === "fadeout") && (
+        <div
+          className={`fixed inset-0 flex flex-col items-center justify-start ${stage === "fadeout" ? "animate-element-fade-out" : "animate-element-fade-in"}`}
+        >
+          {/* Card Image Container */}
           <div
-            className={`fixed inset-0 flex flex-col items-center justify-start ${stage === "fadeout" ? "animate-element-fade-out" : "animate-element-fade-in"}`}
+            className={`relative mt-12 px-6 w-full flex justify-center ${stage === "entering" ? "animate-card-slide-down" : ""} ${stage === "processing" ? "animate-card-hold-pulse" : ""}`}
           >
-            {/* Card Image Container */}
-            <div
-              className={`relative mt-12 px-6 w-full flex justify-center ${stage === "entering" ? "animate-card-slide-down" : ""} ${stage === "processing" ? "animate-card-hold-pulse" : ""}`}
-            >
-              {/* iOS NameDrop-style Aura/Bloom behind the card */}
-              {(stage === "processing" ||
-                stage === "entering" ||
-                stage === "done") && (
-                  <div className="absolute top-0 left-0 w-full h-[120%] -z-10 pointer-events-none flex justify-center items-center">
-                    {/* Huge glowing orb */}
-                    <div
-                      className={`absolute w-[300px] h-[300px] bg-[#007AFF] rounded-full blur-[80px] opacity-20 ${stage === "entering" ? "animate-blob-pulse" : "animate-pulse"}`}
-                    />
-                    <div
-                      className="absolute w-[200px] h-[200px] bg-white rounded-full blur-[60px] opacity-30 animate-pulse"
-                      style={{ animationDelay: "0.5s" }}
-                    />
-
-                    {/* Sprawling background particles (NameDrop style) */}
-                    {particles.map((p) => (
-                      <div
-                        key={p.id}
-                        className={`absolute rounded-full animate-namedrop-particle ${p.isBlue ? "bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]" : "bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]"}`}
-                        style={
-                          {
-                            width: `${p.size}px`,
-                            height: `${p.size}px`,
-                            "--tx": `${p.tx}px`,
-                            "--ty": `${p.ty}px`,
-                            animationDelay: `${p.delay}s`,
-                            animationDuration: `${p.duration}s`,
-                          } as React.CSSProperties
-                        }
-                      />
-                    ))}
-                  </div>
-                )}
-
-              <div className="relative w-full max-w-sm rounded-[1.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.2)] border border-white/20 transform-gpu z-10 bg-white/50 backdrop-blur-md">
-                {/* Using standard img tag pointing to the public folder */}
-                <img
-                  src="/vrc-card.png"
-                  alt="VRChat Resident Card"
-                  className="w-full relative z-10 mix-blend-normal"
+            {/* iOS NameDrop-style Aura/Bloom behind the card */}
+            {(stage === "processing" ||
+              stage === "entering" ||
+              stage === "done") && (
+              <div className="absolute top-0 left-0 w-full h-[120%] -z-10 pointer-events-none flex justify-center items-center">
+                {/* Huge glowing orb */}
+                <div
+                  className={`absolute w-[300px] h-[300px] bg-[#007AFF] rounded-full blur-[80px] opacity-20 ${stage === "entering" ? "animate-blob-pulse" : "animate-pulse"}`}
+                />
+                <div
+                  className="absolute w-[200px] h-[200px] bg-white rounded-full blur-[60px] opacity-30 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
                 />
 
-                {/* Subtle Holographic Sweep on Card */}
-                {(stage === "processing" || stage === "entering") && (
-                  <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-transparent via-white/50 to-transparent -translate-y-full animate-card-shimmer mix-blend-overlay" />
-                )}
-              </div>
-            </div>
-
-            {/* Checkmark Container */}
-            {stage === "done" && (
-              <div className="flex flex-col items-center mt-16 animate-element-fade-in transition-opacity">
-                <svg className="w-20 h-20" viewBox="0 0 52 52">
-                  <circle
-                    className="checkmark-circle"
-                    cx="26"
-                    cy="26"
-                    r="25"
-                    fill="#007AFF"
-                    stroke="#007AFF"
+                {/* Sprawling background particles (NameDrop style) */}
+                {particles.map((p) => (
+                  <div
+                    key={p.id}
+                    className={`absolute rounded-full animate-namedrop-particle ${p.isBlue ? "bg-[#007AFF] shadow-[0_0_15px_4px_rgba(0,122,255,0.8)]" : "bg-white shadow-[0_0_12px_3px_rgba(255,255,255,0.9)]"}`}
+                    style={
+                      {
+                        width: `${p.size}px`,
+                        height: `${p.size}px`,
+                        "--tx": `${p.tx}px`,
+                        "--ty": `${p.ty}px`,
+                        animationDelay: `${p.delay}s`,
+                        animationDuration: `${p.duration}s`,
+                      } as React.CSSProperties
+                    }
                   />
-                  <path
-                    className="checkmark-check"
-                    fill="none"
-                    stroke="#007AFF"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                  />
-                </svg>
-                <p className="mt-4 text-neutral-600 font-medium">完了</p>
+                ))}
               </div>
             )}
+
+            <div className="relative w-full max-w-sm rounded-[1.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.2)] border border-white/20 transform-gpu z-10 bg-white/50 backdrop-blur-md">
+              {/* Using standard img tag pointing to the public folder */}
+              <img
+                src="/vrc-card.png"
+                alt="VRChat Resident Card"
+                className="w-full relative z-10 mix-blend-normal"
+              />
+
+              {/* Subtle Holographic Sweep on Card */}
+              {(stage === "processing" || stage === "entering") && (
+                <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-transparent via-white/50 to-transparent -translate-y-full animate-card-shimmer mix-blend-overlay" />
+              )}
+            </div>
           </div>
-        )}
+
+          {/* Checkmark Container */}
+          {stage === "done" && (
+            <div className="flex flex-col items-center mt-16 animate-element-fade-in transition-opacity">
+              <svg className="w-20 h-20" viewBox="0 0 52 52">
+                <circle
+                  className="checkmark-circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="#007AFF"
+                  stroke="#007AFF"
+                />
+                <path
+                  className="checkmark-check"
+                  fill="none"
+                  stroke="#007AFF"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                />
+              </svg>
+              <p className="mt-4 text-neutral-600 font-medium">完了</p>
+            </div>
+          )}
+        </div>
+      )}
 
       {stage === "profile" && language && (
         <div className="bg-black p-10 items-center justify-center animate-fade-in-up mb-3 w-full h-full font-mono">
