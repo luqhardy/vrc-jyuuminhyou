@@ -9,6 +9,7 @@ import { animate, createScope, spring, createDraggable } from "animejs";
 import { scrambleText } from "animejs/text";
 import Link from "next/link";
 import { Geist_Mono } from "next/font/google";
+import Image from 'next/image'
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -198,10 +199,12 @@ export default function Home() {
 
             <div className="relative w-full max-w-sm rounded-[1.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.2)] border border-white/20 transform-gpu z-10 bg-white/50 backdrop-blur-md">
               {/* Using standard img tag pointing to the public folder */}
-              <img
+              <Image
                 src="/vrc-card.png"
                 alt="VRChat Resident Card"
                 className="w-full relative z-10 mix-blend-normal"
+                width={400}
+                height={250}
               />
 
               {/* Subtle Holographic Sweep on Card */}
@@ -264,6 +267,20 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
+            <br/>
+            <Link href="https://vrchat.com/home/user/usr_976b3f82-538b-4a14-bede-768dbee3784a" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
+            <Image
+              src="/button.png"
+              alt="add friend image"
+              width={100}
+              height={100}
+              className="inline-block mr-1 -mb-1 bg-black"
+            
+            />
+            </Link>
+            <br/>
+            <br/>
+            <br/>
               Visit My Website/個人サイトはこちらから
             </a>
           </p>
