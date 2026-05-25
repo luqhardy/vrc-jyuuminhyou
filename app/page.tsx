@@ -201,7 +201,7 @@ export default function Home() {
               {/* Using standard img tag pointing to the public folder */}
               <Image
                 src="/vrc-card.png"
-                alt="VRChat Resident Card"
+                alt="VRChat Resident Card" 
                 className="w-full relative z-10 mix-blend-normal"
                 width={400}
                 height={250}
@@ -262,25 +262,28 @@ export default function Home() {
           </div>
           <p className="text-neutral-400 text-[10px]">
             <a
+              href="https://vrchat.com/home/user/usr_976b3f82-538b-4a14-bede-768dbee3784a"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-sm transform-gpu transition duration-300 ease-out hover:scale-110 hover:shadow-[0_0_25px_8px_rgba(0,163,255,0.65)] hover:brightness-110"
+            >
+              <Image
+                src="/button.png"
+                alt="VRChat profile button"
+                width={100}
+                height={100}
+                className="inline-block rounded-xl"
+              />
+            </a>
+            <br />
+            <br />
+            <br />
+            <a
               href="https://luqmanhadi.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
-            <br/>
-            <Link href="https://vrchat.com/home/user/usr_976b3f82-538b-4a14-bede-768dbee3784a" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-            <Image
-              src="/button.png"
-              alt="add friend image"
-              width={100}
-              height={100}
-              className="inline-block mr-1 -mb-1 bg-black"
-            
-            />
-            </Link>
-            <br/>
-            <br/>
-            <br/>
               Visit My Website/個人サイトはこちらから
             </a>
           </p>
