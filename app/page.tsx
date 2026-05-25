@@ -267,6 +267,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-block rounded-sm transform-gpu transition duration-300 ease-out hover:scale-110 hover:shadow-[0_0_25px_8px_rgba(0,163,255,0.65)] hover:brightness-110"
             >
+              <br />
+              <br />
               <Image
                 src="/button.png"
                 alt="VRChat profile button"
