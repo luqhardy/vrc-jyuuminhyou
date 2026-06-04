@@ -285,7 +285,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
-            >
+            >  
               Visit My Website/個人サイトはこちらから
             </a>
           </p>
