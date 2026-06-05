@@ -10,6 +10,8 @@ import { scrambleText } from "animejs/text";
 import Link from "next/link";
 import { Geist_Mono } from "next/font/google";
 import Image from 'next/image'
+import ModelViewer from "@/components/ModelViewer";
+
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -284,8 +286,9 @@ export default function Home() {
               href="https://luqmanhadi.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-600"
+              className="text-gray-400 hover:text-blue-600"
             >  
+            <ModelViewer />
               Visit My Website/個人サイトはこちらから
             </a>
           </p>
