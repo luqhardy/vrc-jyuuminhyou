@@ -8,7 +8,7 @@ export default function ModelViewer() {
   const [shouldLoadModel, setShouldLoadModel] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShouldLoadModel(true), 1000 );
+    const timer = window.setTimeout(() => setShouldLoadModel(true), 2000 );
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -32,7 +32,7 @@ export default function ModelViewer() {
             />
           )}
         </Suspense>
-        <OrbitControls enableZoom={true} makeDefault target={[0, 3, 0]} autoRotate autoRotateSpeed={2.0}/>
+        <OrbitControls enableZoom={true} makeDefault target={[0, 3, 0]} autoRotate autoRotateSpeed={1.0}/>
       </Canvas>
     </div>
   );

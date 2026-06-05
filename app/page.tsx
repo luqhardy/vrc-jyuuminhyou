@@ -148,7 +148,7 @@ export default function Home() {
 
   return (
     <main
-      className={`min-h-screen flex flex-col items-center p-10 font-sans overflow-hidden transition-colors duration-500 ${
+      className={`min-h-screen flex flex-col items-center p-0 font-sans overflow-hidden transition-colors duration-500 ${
         stage === "profile" ? "bg-black text-white" : "bg-[#f2f2f7] text-black"
       }`}
     >
@@ -247,11 +247,11 @@ export default function Home() {
       {stage === "profile" && language && (
         <div className="bg-black p-5 items-center justify-center animate-fade-in-up mb-3 w-full h-full font-mono">
 
-          <div className="relative w-full h-[800px] mt-6 rounded-3xl overflow-hidden">
+          <div className="relative w-full h-[1000px] mt-6 rounded-3xl overflow-hidden">
             <ModelViewer />
-            <div className="absolute inset-x-6 top-1 h-130 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10 ">
+            <div className="absolute inset-x-6 top-1 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10">
             <div 
-                className="text-white p-4 rounded-lg text-[10px] whitespace-pre md:text-sm font-mono text-sm leading-tight tracking-normal overflow-hidden"
+                className="text-white p-0 rounded-lg text-[10px] whitespace-pre md:text-sm font-mono text-sm leading-tight tracking-normal overflow-hidden"
                 style={{
                   fontFamily: '"Geist Mono"',
                   lineHeight: "1.2",
