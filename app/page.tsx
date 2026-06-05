@@ -245,16 +245,20 @@ export default function Home() {
       )}
 
       {stage === "profile" && language && (
-        <div className="bg-black p-10 items-center justify-center animate-fade-in-up mb-3 w-full h-full font-mono">
-          <div
-            className="bg-black text-white p-2 rounded-lg shadow-lg w-full h-full text-[10px] whitespace-pre md:text-sm justify-center items-center font-mono text-sm leading-none tracking-normal"
-            style={{
-              fontFamily: '"Geist Mono"',
-              lineHeight: "1.0",
-            }}
-            ref={nameRef}
-          ></div>
-          <div className="text-[10px]">
+        <div className="bg-black p-5 items-center justify-center animate-fade-in-up mb-3 w-full h-full font-mono">
+
+          <div className="relative w-full h-[800px] mt-6 rounded-3xl overflow-hidden">
+            <ModelViewer />
+            <div className="absolute inset-x-6 top-1 h-130 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10 ">
+            <div 
+                className="text-white p-4 rounded-lg text-[10px] whitespace-pre md:text-sm font-mono text-sm leading-tight tracking-normal overflow-hidden"
+                style={{
+                  fontFamily: '"Geist Mono"',
+                  lineHeight: "1.2",
+                }}
+                ref={nameRef}
+              ></div>
+            <div className="text-[10px]">
             <br />
             {messageRef}
             <br />
@@ -262,14 +266,12 @@ export default function Home() {
             {messageRefJa}
             <br />
           </div>
-          <p className="text-neutral-400 text-[10px]">
             <a
               href="https://vrchat.com/home/user/usr_976b3f82-538b-4a14-bede-768dbee3784a"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-sm transform-gpu transition duration-300 ease-out hover:scale-110 hover:shadow-[0_0_25px_8px_rgba(0,163,255,0.65)] hover:brightness-110"
+              className="inline-block rounded-sm transform-gpu transition duration-300 ease-out hover:scale-110 hover:brightness-110 w-[100px] h-[100px]"
             >
-              <br />
               <br />
               <Image
                 src="/button.png"
@@ -279,16 +281,17 @@ export default function Home() {
                 className="inline-block rounded-xl"
               />
             </a>
-            <br />
-            <br />
-            <br />
+              
+            </div>
+          </div>
+
+          <p className="text-neutral-400 text-[10px] mt-6">
             <a
               href="https://luqmanhadi.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-blue-600"
-            >  
-            <ModelViewer />
+            >
               Visit My Website/個人サイトはこちらから
             </a>
           </p>
