@@ -249,7 +249,7 @@ export default function Home() {
 
           <div className="relative w-full h-[1000px] mt-6 rounded-3xl overflow-hidden">
             <ModelViewer />
-            <div className="absolute inset-x-6 top-1 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10">
+            <div className="absolute inset-x-6 top-1 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10 pt-6 mt-6 flex flex-col items-left">
             <div 
                 className="text-white p-0 rounded-lg text-[10px] whitespace-pre md:text-[10px] font-mono leading-tight tracking-normal overflow-hidden"
                 style={{
