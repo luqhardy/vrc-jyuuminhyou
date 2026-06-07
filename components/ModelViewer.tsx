@@ -29,7 +29,7 @@ export default function ModelViewer() {
   return (
     <div className="w-full h-full relative bg-zinc-950 rounded-xl overflow-hidden">
       <Canvas camera={{ position: [0, 3, 10], fov: 50 }}>
-        <color attach="background" args={["#FFFFFF"]} />
+        <color attach="background" args={["#"]} />
         <ambientLight intensity={1.5} />
         <directionalLight position={[5, 5, 5]} intensity={2} />
         <gridHelper args={[100, 100, "#000000", "#000000"]} position={[0, 0, 0]} />
