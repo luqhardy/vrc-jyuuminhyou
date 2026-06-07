@@ -299,7 +299,7 @@ export default function Home() {
       )}
  
       <div
-        className={`mt-auto pt-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}
+        className={`mt-auto p-6 w-full text-center text-[10px] relative z-10 h-40 animate-fade-in-up ${stage === "profile" ? "text-neutral-400" : "text-neutral-600"}`}
       >
         <p>
           © 2026 特定非営利活動法人 在日マレーシア人ふにゃおすなでなで推進委員会
