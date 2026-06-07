@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import { EffectComposerContext } from "@react-three/postprocessing";
 import { VelocityDepthNormalPass, MotionBlurEffect } from "realism-effects";
 import * as POSTPROCESSING from "postprocessing";
