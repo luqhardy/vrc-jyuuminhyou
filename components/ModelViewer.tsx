@@ -64,7 +64,7 @@ export default function ModelViewer() {
           {shouldLoadModel && (
             <Gltf 
               src="/model.glb" 
-              scale={5} 
+              scale={4} 
               position={[0, -0.1, 0]} 
             />
           )}
