@@ -15,9 +15,7 @@ import { EffectComposer, Bloom,
   ColorDepth,
   Scanline } from "@react-three/postprocessing"
 import { AsciiRenderer } from '@react-three/drei'
-import { VelocityDepthNormalPass, MotionBlurEffect } from "realism-effects";
 import * as POSTPROCESSING from "postprocessing";
-import { MotionBlur } from "./MotionBlur";
 export default function ModelViewer() {
   const [shouldLoadModel, setShouldLoadModel] = useState(false);
 
@@ -61,7 +59,7 @@ export default function ModelViewer() {
           characters=" .:-+*=%@#" 
 
          />     --> */}
-        <EffectComposer NormalPass={VelocityDepthNormalPass}>
+        <EffectComposer>
           <Bloom intensity={0.5} luminanceThreshold={0.1} />
           <MotionBlur intensity={1} samples={15} jitter={1} />
           <Glitch delay={[1.5, 3]} duration={[0.2, 0.3]} strength={[0.01, 0.1]} mode={POSTPROCESSING.GlitchMode.SPORADIC} />
