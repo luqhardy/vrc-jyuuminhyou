@@ -131,7 +131,7 @@ export default function Home() {
           reversed: false,
           ease: "linear",
           chars: "shades",
-          cursor: "█",
+          cursor: "░▒▓█",
           override: true,
           perturbation: 0.0,
           duration: 0,
@@ -251,7 +251,7 @@ export default function Home() {
             <ModelViewer />
             <div className="absolute inset-x-6 top-1 rounded-[32px] bg-black/40 backdrop-blur-sm shadow-2xl border border-white/20 p-10">
             <div 
-                className="text-white p-0 rounded-lg text-[10px] whitespace-pre md:text-sm font-mono text-sm leading-tight tracking-normal overflow-hidden"
+                className="text-white p-0 rounded-lg text-[10px] whitespace-pre md:text-[10px] font-mono leading-tight tracking-normal overflow-hidden"
                 style={{
                   fontFamily: '"Geist Mono"',
                   lineHeight: "1.2",

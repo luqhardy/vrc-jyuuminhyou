@@ -8,7 +8,7 @@ export default function ModelViewer() {
   const [shouldLoadModel, setShouldLoadModel] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShouldLoadModel(true), 2000 );
+    const timer = window.setTimeout(() => setShouldLoadModel(true),3000 );
     return () => window.clearTimeout(timer);
   }, []);
 
