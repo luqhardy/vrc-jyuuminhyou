@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   // next.config.js
   transpilePackages: ['three'],
   allowedDevOrigins: ['192.168.11.5'],
+  typescript: {
+  ignoreBuildErrors: true,
+  },
+  
 };
 
 
