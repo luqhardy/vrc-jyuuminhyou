@@ -91,7 +91,7 @@ export default function ModelViewer() {
           <Vignette offset={0.2} darkness={0.4} />
 <Noise opacity={0.15} />
 <SSAO radius={20} intensity={10} bias={0.5} />
-<ChromaticAberration offset={[0.007, 0.007]} />
+<ChromaticAberration offset={[0.0025, 0.0025]} />
         </EffectComposer>
 
       </Canvas>
